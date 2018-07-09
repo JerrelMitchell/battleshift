@@ -22,6 +22,8 @@ end
 
 group :test do
   gem 'simplecov'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :development do
