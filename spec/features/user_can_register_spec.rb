@@ -17,8 +17,9 @@ RSpec.describe 'User Registration' do
     fill_in 'Email', with: user.email
     fill_in 'Name', with: user.name
     fill_in 'Password', with: user.password
-    fill_in 'Password Confirmation', with: user.password
+    fill_in 'Password confirmation', with: user.password
     click_button 'Submit'
+
 
     expect(page).to have_current_path('/dashboard')
     expect(page).to have_content("Logged in as #{user.name}")
