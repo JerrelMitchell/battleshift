@@ -8,6 +8,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/dashboard'
     else
+      flash[:error] = "Please make sure all fields are complete"
       render :new
     end
   end

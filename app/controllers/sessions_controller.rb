@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    
+
   end
 
   def create
@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/dashboard'
     else
+      flash[:error] = 'Invalid email and/or password.'
       render :new
-      flash[:notice] = 'Invalid email and/or password.'
     end
   end
 end

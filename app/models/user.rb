@@ -4,4 +4,8 @@ class User < ApplicationRecord
   validates_confirmation_of :password
 
   has_secure_password
+
+  def activated?
+    user[:status] == 1
+  end
 end
