@@ -4,8 +4,9 @@ class User < ApplicationRecord
   validates_confirmation_of :password
 
   has_secure_password
+  enum status: [:inactive, :active]
 
   def activated?
-    user[:status] == 1
+    status == 'active'
   end
 end
