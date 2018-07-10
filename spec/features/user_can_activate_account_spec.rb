@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Account Activation' do
   it "sends an email to a newly registered account where user can activate their account" do
-    activation_link = 'Visit here to activate your account.'
-    thanks_message = 'Thank you! Your account is now activated.'
     user = { name: 'Sally Test', email: 'sally@example.com', password: 'sallyspassword' }
     email_link = /Welcome to Battleshift. Activate your account here!/
 
@@ -22,19 +20,16 @@ RSpec.describe 'Account Activation' do
     expect(email.subject).to eq('Welcome to Battleshift. Activate your account here!')
     expect(email.html_part.body).to match(email_link)
   end
-
   it 'should take user to confirmation page after activating account' do
     active_user = User.create!(name: 'Sally', email: 'sally@example.com', password: 'sallyspassword', status: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(active_user)
 
-    
     visit '/confirmation'
-    
+
     expect(page).to have_content('You\'ve successfully activated your account!')
     expect(page).to have_link('Dashboard')
-    
+
     visit '/dashboard'
-    save_and_open_page
 
     expect(page).to have_content('Status: Active')
   end
