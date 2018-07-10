@@ -1,6 +1,6 @@
 class ActivationController < ApplicationController
   def create
-    user = User.find(params[:id])
+    user = User.find_by(activation_token: params[:activation_token])
     user.active!
     redirect_to '/confirmation'
   end

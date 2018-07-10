@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'dashboard#show'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-  get '/activate/:id' => 'activation#create', as: :activation
+  get '/activate/:activation_token' => 'activation#create', as: :activation
   get '/confirmation' => 'activation#show'
 
   namespace :api do
