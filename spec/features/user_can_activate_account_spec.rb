@@ -24,14 +24,18 @@ RSpec.describe 'Account Activation' do
   end
 
   it 'should take user to confirmation page after activating account' do
-    inactive_user = User.create(email: 'sally@example.com', name: 'Sally Test', password: 'sallyspassword', status: 0)
+    active_user = User.create!(name: 'Sally', email: 'sally@example.com', password: 'sallyspassword', status: 1)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(active_user)
 
-    expect(inactive_user.status).to eq('inactive')
     
-    visit "/activate/#{inactive_user.id}"
-
-    expect(inactive_user.status).to eq('active')
+    visit '/confirmation'
+    
     expect(page).to have_content('You\'ve successfully activated your account!')
+    expect(page).to have_link('Dashboard')
+    
+    visit '/dashboard'
+    save_and_open_page
 
+    expect(page).to have_content('Status: Active')
   end
 end
