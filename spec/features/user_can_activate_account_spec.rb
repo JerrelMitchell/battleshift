@@ -22,4 +22,16 @@ RSpec.describe 'Account Activation' do
     expect(email.subject).to eq('Welcome to Battleshift. Activate your account here!')
     expect(email.html_part.body).to match(email_link)
   end
+
+  it 'should take user to confirmation page after activating account' do
+    inactive_user = User.create(email: 'sally@example.com', name: 'Sally Test', password: 'sallyspassword', status: 0)
+
+    expect(inactive_user.status).to eq('inactive')
+    
+    visit "/activate/#{inactive_user.id}"
+
+    expect(inactive_user.status).to eq('active')
+    expect(page).to have_content('You\'ve successfully activated your account!')
+
+  end
 end
