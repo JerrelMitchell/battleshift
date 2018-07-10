@@ -1,4 +1,4 @@
 <%= "Hi #{@user.name.capitalize}, thanks for registering!" %>
 <%= "Welcome to Battleshift. Activate your account here!" %>
 <%= link_to "Visit here to activate your account.", '/activate', method: :post %>
-<%= "Here's your unique API Key to register account!: #{@user.key}" %>
+<%= "Here's your unique API Key to register account!: #{@user.auth_token}" %>

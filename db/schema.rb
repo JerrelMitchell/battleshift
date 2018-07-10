@@ -31,7 +31,8 @@ ActiveRecord::Schema.define(version: 20180710163440) do
     t.string "email"
     t.string "password_digest"
     t.integer "status", default: 0
-    t.string "key"
+    t.string "auth_token"
+    t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
   end
 
 end

@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      KeyService.new(@user).create_key
       ActivationNotifierMailer.inform(@user).deliver_now
       flash[:success] = "You've successfully activated your account!"
       redirect_to '/dashboard'

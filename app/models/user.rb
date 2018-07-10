@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password
 
   has_secure_password
+  has_secure_token :auth_token
 
   enum status: [:inactive, :active]
 
