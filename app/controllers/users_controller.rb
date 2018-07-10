@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       ActivationNotifierMailer.inform(@user).deliver_now
-      flash[:success] = "You've successfully activated your account!"
       redirect_to '/dashboard'
     else
       flash[:error] = "Please make sure all fields are complete"
