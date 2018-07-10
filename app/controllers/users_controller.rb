@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       session[:user_id] = user.id
+      ActivationNotifierMailer.inform(user).deliver_now
+      flash[:notice] = "You've successfully activated your account!"
       redirect_to '/dashboard'
     else
       flash[:error] = "Please make sure all fields are complete"
