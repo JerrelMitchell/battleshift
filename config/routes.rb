@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/' => 'home#index'
-  get '/register' => 'users#new'
+  get '/register' => 'users#new', as: :users
   post '/register' => 'users#create'
   get '/dashboard' => 'dashboard#show'
   get '/login' => 'sessions#new'
