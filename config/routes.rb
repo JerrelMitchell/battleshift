@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'dashboard#show'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-  post '/activate/:id' => 'activation#create'
+  get '/activate/:id' => 'activation#create'
   get '/confirmation' => 'activation#show'
 
   namespace :api do
