@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'dashboard#show'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
+  post '/activate' => 'activations#create'
 
   namespace :api do
     namespace :v1 do
