@@ -49,7 +49,7 @@ RSpec.describe 'User Registration' do
     expect(page).to have_current_path('/register')
     expect(page).to have_content("Please make sure all fields are complete")
   end
-  xit 'they should get error message if password confirmation field missing' do
+  it 'they should get error message if password confirmation field missing' do
     visit '/register'
 
     user = { name: 'Sally Test', email: 'sally@example.com', password: 'sallyspassword' }
