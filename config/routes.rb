@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   post '/activate/:id' => 'activation#create'
-  get 'activate/:id' => 'activation#show'
+  get '/confirmation' => 'activation#show'
 
   namespace :api do
     namespace :v1 do

@@ -4,6 +4,9 @@ class ActivationController < ApplicationController
     user = User.find(params[:id])
     user.active!
     flash[:notice] = "You've successfully activated your account!"
-    redirect_to '/dashboard'
+    redirect_to '/confirmation'
+  end
+  
+  def show
   end
 end
