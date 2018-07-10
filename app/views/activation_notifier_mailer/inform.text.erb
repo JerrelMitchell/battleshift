@@ -1,4 +1,4 @@
 <%= "Hi #{@user.name.capitalize}, thanks for registering!" %>
 <%= "Welcome to Battleshift. Activate your account here!" %>
-<%= link_to "Visit here to activate your account.", "https://battle-shift-trips.herokuapp.com/activate/#{@user.id}" %>
+<%= link_to "Visit here to activate your account.", activation_url(@user.id) %>
 <%= "Here's your unique API Key to register account!: #{@user.auth_token}" %>
