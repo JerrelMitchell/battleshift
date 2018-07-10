@@ -6,9 +6,8 @@ RSpec.describe 'Activation' do
 
     expect(inactive_user.status).to eq('inactive')
 
-    get "/activate/#{inactive_user.id}"
+    get "/activate/#{inactive_user.activation_token}"
 
     expect(User.find(inactive_user.id).status).to eq('active')
-    # expect(page).to have_content('You\'ve successfully activated your account!')
   end
 end
