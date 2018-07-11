@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :games, only: [:show] do
+      resources :games, only: [:show, :new, :create] do
         post "/shots", to: "games/shots#create"
       end
     end
