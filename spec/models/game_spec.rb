@@ -13,12 +13,17 @@ RSpec.describe Game, type: :model do
                     current_turn: turn
                   }
 
-    game = Game.new(game_attributes)
+    game = Game.create!(game_attributes)
 
     expect(game.player_1_board.length).to eq(4)
     expect(game.player_2_board.length).to eq(4)
     expect(game.player_1_turns).to eq(0)
     expect(game.player_2_turns).to eq(0)
     expect(game.current_turn).to eq(turn)
+  end
+
+  describe 'Relationships' do
+    it { should have_many(:user_games) }
+    it { should have_many(:users).through(:user_games) }
   end
 end
