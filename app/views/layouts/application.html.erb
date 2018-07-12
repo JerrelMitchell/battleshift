@@ -9,16 +9,10 @@
   </head>
 
   <body>
-    <% if !current_user %>
-      <% render 'layouts/nav' %>
-      <%= yield :visitor %>
-    <% else %>
-      <% render 'layouts/nav' %>
-      <%= yield :user %>
-    <% end %>
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: name %>
   <% end %>
+    <%= render partial: determine_content %>
     <%= yield %>
   </body>
 </html>
