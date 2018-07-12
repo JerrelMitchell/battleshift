@@ -45,7 +45,7 @@ describe 'GET /api/v1/games/1' do
 
       get "/api/v1/games/#{game.id}"
 
-      actual  = JSON.parse(response.body, symbolize_names: true)
+      actual   = JSON.parse(response.body, symbolize_names: true)
       expected = Game.last
 
       expect(response).to be_success

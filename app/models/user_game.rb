@@ -5,4 +5,13 @@ class UserGame < ApplicationRecord
   belongs_to :game
 
   enum player: ['player_1', 'player_2']
+
+  def self.create_board(user, game)
+    if UserGame.find_by(user_id: user.id).player == 'player_1'
+      board = game.player_1_board
+    else
+      board = game.player_2_board
+    end
+    board
+  end
 end
