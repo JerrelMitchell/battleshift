@@ -7,11 +7,12 @@ describe 'GET /api/v1/games' do
       player_1 = User.create!(name: 'Michael Scarn', email: 'goldenfacehunter@scarn.com', password: 'dwigt')
       player_2 = User.create!(name: 'Golden Face', email: email, password: 'midnight')
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(player_1)
+      headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => player_2.auth_token }
+      email = {opponent_email: player_2[:email]}.to_json
 
-      post "/api/v1/games?api_key=#{player_1.auth_token}&opponent_email=#{email}"
-
+      post "/api/v1/games", params: email, headers: headers
       expect(response).to be_successful
+#Need to associate users with game before passing this part of the test 
       expect(Game.last.users).to eq([player_1, player_2])
     end
   end
