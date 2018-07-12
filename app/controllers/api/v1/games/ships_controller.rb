@@ -17,7 +17,10 @@ class Api::V1::Games::ShipsController < ApplicationController
     # !!!!!!
     # Don't hard code player 1's board, game needs player 1 and player 2 fields
     # !!!!!!
-    placer = ShipPlacer.new(game.player_1_board, ship, payload['start_space'], payload['end_space'])
+    placer = ShipPlacer.new(board: game.player_1_board, 
+                            ship: ship, 
+                            start_space: payload['start_space'],
+                            end_space: payload['end_space'])
 
     # Run ShipPlacer
     placer.run
