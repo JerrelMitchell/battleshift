@@ -1,4 +1,9 @@
-class ShipPlacementError < StandardError
+class GameError < StandardError
+
+  def initialize(msg = "Invalid attack.")
+    super(msg)
+  end
+
   def crooked!
     'Ship must be in either the same row or column.'
   end
