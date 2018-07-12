@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'GET /api/v1/games' do
   context 'user starts game' do
-    it 'returns a game with boards' do
+    it 'return successful post response' do
       email = 'catherinezetajones@threatlevel.com'
       player_1 = User.create!(name: 'Michael Scarn', email: 'goldenfacehunter@scarn.com', password: 'dwigt')
       User.create!(name: 'Golden Face', email: email, password: 'midnight')
