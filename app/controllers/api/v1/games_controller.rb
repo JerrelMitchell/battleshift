@@ -9,6 +9,9 @@ module Api
           render status: 400
         end
       end
+
+      def create
+      end
     end
   end
 end
