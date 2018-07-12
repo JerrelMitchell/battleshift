@@ -9,9 +9,9 @@ RSpec.describe 'User Registration' do
     expect(page).to have_current_path('/register')
   end
   it 'they should be able to register' do
-    visit '/register'
-
     user = { name: 'Sally Test', email: 'sally@example.com', password: 'sallyspassword' }
+
+    visit '/register'
 
     fill_in 'Email', with: user[:email]
     fill_in 'Name', with: user[:name]

@@ -1,6 +1,5 @@
 class Board
-  attr_reader :length,
-              :board
+  attr_reader :length, :board
 
   def initialize(length)
     @length = length
@@ -171,6 +170,7 @@ class Board
   def neighbors?(coordinate1, coordinate2)
     neighbors(coordinate1).include?(coordinate2)
   end
+
   def contains?(coordinate)
     create_space_names.include?(coordinate)
   end
@@ -184,7 +184,7 @@ class Board
   end
 
   def space_occupied?(coordinate)
-     get_space(coordinate).occupied
+    get_space(coordinate).occupied
   end
 
   def space_attacked?(coordinate)
@@ -203,4 +203,3 @@ class Board
     get_column(coordinate) == "1"
   end
 end
-
