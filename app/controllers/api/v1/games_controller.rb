@@ -11,6 +11,13 @@ module Api
       end
 
       def create
+        Game.create!(
+          player_1_board: Board.new(6),
+          player_2_board: Board.new(6),
+          player_1_turns: 0,
+          player_2_turns: 0,
+          current_turn: 'challenger'
+        )
       end
     end
   end
