@@ -1,11 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:email) }
-  it { should validate_uniqueness_of(:email) }
-  it { should validate_presence_of(:password) }
-  it { should have_secure_password }
+  describe 'Validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_presence_of(:password) }
+    it { should have_secure_password }
+  end
+
+  describe 'Relationships' do
+    it { should have_many(:user_games) }
+    it { should have_many(:games).through(:user_games) }
+  end
 
   describe 'activation' do
     it 'verifies account has been activated' do
