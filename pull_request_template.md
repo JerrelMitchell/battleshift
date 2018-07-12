@@ -1,27 +1,23 @@
-____ Wrote Tests
-____ Implemented 
-____ Reviewed
+\_**\_ Wrote Tests
+\_\_** Implemented
+\_\_\_\_ Reviewed
+
 # Neccesary checkmarks:
+
 - [] All Tests are Passing
 
 - [] The code will run locally on puma
 
 ## Type of change
-- [] New feature 
-- [] Bug Fix
+
+- [] New feature
+- [] Bug Fix/Refactor
 
 # Description:
 
-
-
 # Implements:
 
-
-
 # Fixes
-
-
-
 
 # Check the correct boxes
 
@@ -30,6 +26,7 @@ ____ Reviewed
 - [] This broke everything
 
 # Testing Changes
+
 - [] No Tests have been changed
 - [] Some Tests have been changed
 - [] All of the Tests have been changed(Please describe what in the world happened)
@@ -42,4 +39,5 @@ ____ Reviewed
 - [] I have fully tested my code
 
 # Please Include a link to a gif of your feelings about this branch
-Link: 
+
+Link:
