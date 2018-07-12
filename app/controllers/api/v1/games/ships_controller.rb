@@ -13,7 +13,7 @@ class Api::V1::Games::ShipsController < ApplicationController
 
     # Create ShipPlacer object with game.player_#_board, ship, 
     #   start_space (from req body param), end_space (from req body param)
-    
+
     # !!!!!!
     # Don't hard code player 1's board, game needs player 1 and player 2 fields
     # !!!!!!
@@ -21,6 +21,5 @@ class Api::V1::Games::ShipsController < ApplicationController
 
     # Run ShipPlacer
     placer.run
-    require 'pry';binding.pry
   end
 end
