@@ -1,6 +1,5 @@
 class GameError < StandardError
-
-  def initialize(msg = "Invalid attack.")
+  def initialize(msg = 'Invalid attack.')
     super(msg)
   end
 
