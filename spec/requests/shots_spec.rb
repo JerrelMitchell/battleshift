@@ -12,6 +12,8 @@ describe "Api::V1::Shots" do
       )
     }
 
+    let(:user) { game.users.create!(name: 'Archibald', email: 'skeletor@example.com', password: 'password', status: 1) }
+
     it "updates the message and board with a hit" do
       allow_any_instance_of(AiSpaceSelector).to receive(:fire!).and_return("Miss")
       ShipPlacer.new(board: player_2_board,
@@ -19,7 +21,7 @@ describe "Api::V1::Shots" do
                      start_space: "A1",
                      end_space: "A2").run
 
-      headers = { "CONTENT_TYPE" => "application/json" }
+      headers = { "HTTP_X_API_KEY" => user.auth_token, "CONTENT_TYPE" => "application/json" }
       json_payload = {target: "A1"}.to_json
 
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
@@ -39,7 +41,7 @@ describe "Api::V1::Shots" do
     it "updates the message and board with a miss" do
       allow_any_instance_of(AiSpaceSelector).to receive(:fire!).and_return("Miss")
 
-      headers = { "CONTENT_TYPE" => "application/json" }
+      headers = { "HTTP_X_API_KEY" => user.auth_token, "CONTENT_TYPE" => "application/json" }
       json_payload = {target: "A1"}.to_json
 
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
@@ -57,11 +59,12 @@ describe "Api::V1::Shots" do
     end
 
     it "updates the message but not the board with invalid coordinates" do
+      # user = game.users.create!(name: 'Archibald', email: 'skeletor@example.com', password: 'password', status: 1)
       player_1_board = Board.new(1)
       player_2_board = Board.new(1)
       game = create(:game, player_1_board: player_1_board, player_2_board: player_2_board)
 
-      headers = { "CONTENT_TYPE" => "application/json" }
+      headers = { "HTTP_X_API_KEY" => user.auth_token, "CONTENT_TYPE" => "application/json" }
       json_payload = {target: "B1"}.to_json
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
 

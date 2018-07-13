@@ -1,4 +1,4 @@
-class Api::V1::Games::ShotsController < ApiController
+class Api::V1::Games::ShotsController < Api::V1::ApplicationController
   def create
     game = Game.find(params[:game_id])
 
