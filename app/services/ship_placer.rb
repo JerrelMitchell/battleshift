@@ -12,7 +12,7 @@ class ShipPlacer
     elsif same_column?
       place_in(start_space[1], start_space[0]..end_space[0], 'verticle')
     else
-      raise(ShipPlacementError.new.crooked!)
+      raise(GameError.new.crooked!)
     end
   end
 
@@ -29,7 +29,7 @@ class ShipPlacer
   end
 
   def place_in(start_space, range, orientation)
-    raise ShipPlacementError.new.length_error! unless range.count == ship.length
+    raise GameError.new.length_error! unless range.count == ship.length
     range.each { |column| place_ship(start_space, column) } if orientation == 'horizontal'
     range.each { |row| place_ship(row, start_space) }       if orientation == 'verticle'
   end
@@ -37,7 +37,7 @@ class ShipPlacer
   def place_ship(row, column)
     coordinates = "#{row}#{column}"
     space = board.locate_space(coordinates)
-    raise ShipPlacementError.new.space_occupied! if space.occupied?
+    raise GameError.new.space_occupied! if space.occupied?
     space.occupy!(ship)
   end
 end

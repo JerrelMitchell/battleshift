@@ -11,7 +11,7 @@ class Api::V1::Games::ShipsController < ApplicationController
                              end_space: payload['end_space'])
 
     placer.run
-    Game.find(game.id).update(player_1_board: game.player_1_board, player_2_board: game.player_2_board)
-    # require 'pry' ; binding.pry
+
+    game.update(player_1_board: game.player_1_board, player_2_board: game.player_2_board)
   end
 end

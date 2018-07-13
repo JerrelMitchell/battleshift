@@ -7,7 +7,6 @@ RSpec.describe 'Navigation Bars' do
 
       expect(page).to have_css('#navigation')
       expect(page).to have_link('Dashboard')
-      expect(page).to have_link('New Game')
       expect(page).to have_link('Login')
     end
   end
@@ -21,7 +20,6 @@ RSpec.describe 'Navigation Bars' do
 
       expect(page).to have_css('#navigation')
       expect(page).to have_link('Dashboard')
-      expect(page).to have_link('New Game')
       expect(page).to have_link('Logout')
     end
 
@@ -33,7 +31,6 @@ RSpec.describe 'Navigation Bars' do
 
       expect(page).to have_css('#navigation')
       expect(page).to have_link('Dashboard')
-      expect(page).to have_link('New Game')
       expect(page).to have_link('Logout')
     end
   end
