@@ -8,10 +8,9 @@ class Api::V1::GamesController < ActionController::API
     end
   end
 
-  def create
+  def create 
     player_1 = User.find_by(auth_token: request.headers["HTTP_X_API_KEY"])
     player_2 = User.find_by(email: params["opponent_email"])
-
     game = Game.create!(
       player_1_board: Board.new(6),
       player_2_board: Board.new(6),

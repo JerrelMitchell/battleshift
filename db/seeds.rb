@@ -36,3 +36,6 @@ game_attributes = {
 
 game = Game.new(game_attributes)
 game.save!
+
+User.create(name: "Bluth", email: "example@example.com", password: "123abc", status: 1, auth_token: "dEJS3d9m3RKSGKmoNYnGSPx5")
+User.create(name: "Job", email: "notanemail@example.com", password: "123abc", status: 1, auth_token: "e9TceAxUHYzny3rV7K5rfAmx")
