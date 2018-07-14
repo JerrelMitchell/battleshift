@@ -9,10 +9,10 @@ RSpec.describe 'User Ship Placement Request' do
     email2  = { opponent_email: player2[:email] }.to_json
 
     post '/api/v1/games', params: email2, headers: headers
-    payload = { ship_size: 3, start_space: 'A1', end_space: 'A3' }.to_json
+    payload = { ship_size: 3, start_space: 'A1', end_space: 'A3' }
 
     headers = { 'X-Api-Key' => player1.auth_token, 'CONTENT_TYPE' => 'application/json' }
-    params = payload
+    params = payload.to_json
 
     post "/api/v1/games/#{Game.last.id}/ships", params: params, headers: headers
 
@@ -22,7 +22,10 @@ RSpec.describe 'User Ship Placement Request' do
     expect(game_board[2]['A3']).to_not eq(nil)
     expect(game_board.last['A4'].contents).to eq(nil)
 
-    expect(response.body["message"]).to eq("Successfully placed ship with a size of #{payload['ship_size']}. You have 1 ship(s) to place with a size of 2.")
+    response_data = JSON.parse(response.body)
+    # require 'pry';binding.pry
+
+    expect(response_data["message"]).to eq("Successfully placed ship with a size of #{payload[:ship_size]}. You have 1 ship(s) to place with a size of 2.")
   end
 
   it 'should not allow players to place a ship who are not a part of this game' do

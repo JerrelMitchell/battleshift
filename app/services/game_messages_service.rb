@@ -5,7 +5,7 @@ class GameMessagesService
   end
 
   def placed_ship_size
-    @payload[:ship_size]
+    @payload["ship_size"]
   end
 
   def player_remaining_ships
