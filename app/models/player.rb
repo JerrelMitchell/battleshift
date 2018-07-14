@@ -8,4 +8,8 @@ class Player
       cruisers: 1
     }
   end
+
+  def decrease_ship_count(ship_type)
+    @ships[ship_type] -= 1
+  end
 end
