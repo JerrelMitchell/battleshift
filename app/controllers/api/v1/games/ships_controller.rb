@@ -16,7 +16,7 @@ class Api::V1::Games::ShipsController < Api::V1::ApplicationController
 
     game.update(player_1_board: game.player_1_board, player_2_board: game.player_2_board)
     player.decrease_ship_count(payload['ship_size'])
-
+    
     render json: game, message: GameMessagesService.new(player, payload: payload).ship_placement_feedback
   end
 end
