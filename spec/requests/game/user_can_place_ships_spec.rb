@@ -20,7 +20,7 @@ RSpec.describe 'User Ship Placement Request' do
 
     expect(game_board.first['A1']).to_not eq(nil)
     expect(game_board[2]['A3']).to_not eq(nil)
-    expect(game_board.last['A6'].contents).to eq(nil)
+    expect(game_board.last['A4'].contents).to eq(nil)
   end
 
   it 'should not allow players to place a ship who are not a part of this game' do
