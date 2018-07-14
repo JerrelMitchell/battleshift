@@ -12,7 +12,7 @@ RSpec.describe GameMessagesService do
         }
         message_service = GameMessagesService.new(player, payload: payload)
 
-        player.decrease_ship_count(:destroyers)
+        player.decrease_ship_count(payload['ship_size'])
 
         message = "Successfully placed ship with a size of #{payload['ship_size']}. You have #{player.ships[:cruisers]} ship(s) to place with a size of 2."
 

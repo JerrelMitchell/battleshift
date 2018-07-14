@@ -10,7 +10,8 @@ class Player < SimpleDelegator
     }
   end
 
-  def decrease_ship_count(ship_type)
-    @ships[ship_type] -= 1
+  def decrease_ship_count(ship_length)
+    @ships[:destroyers] -= 1 if ship_length == 3
+    @ships[:cruisers] -= 1 if ship_length == 2
   end
 end

@@ -16,7 +16,7 @@ RSpec.describe Player do
   describe 'Instance Methods' do
     describe '#decrease_ship_count' do
       it 'should decrease the given ship amount by 1' do
-        player.decrease_ship_count(:destroyers)
+        player.decrease_ship_count(3)
 
         expect(player.ships[:destroyers]).to eq(0)
       end
