@@ -10,7 +10,7 @@ class Api::V1::GamesController < ActionController::API
 
   def create
     player_1 = User.find_by(auth_token: request.headers["HTTP_X_API_KEY"])
-    player_2 = User.find_by(email: params[:opponent_email])
+    player_2 = User.find_by(email: params["opponent_email"])
 
     game = Game.create!(
       player_1_board: Board.new(6),
@@ -22,5 +22,7 @@ class Api::V1::GamesController < ActionController::API
 
     game.user_games.create!(user_id: player_1.id, player: 0)
     game.user_games.create!(user_id: player_2.id, player: 1)
+
+    render json: game
   end
 end

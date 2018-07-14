@@ -13,5 +13,7 @@ class Api::V1::Games::ShipsController < ApplicationController
     placer.run
 
     game.update(player_1_board: game.player_1_board, player_2_board: game.player_2_board)
+
+    # render status: 200
   end
 end
