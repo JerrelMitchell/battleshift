@@ -21,6 +21,8 @@ RSpec.describe 'User Ship Placement Request' do
     expect(game_board.first['A1']).to_not eq(nil)
     expect(game_board[2]['A3']).to_not eq(nil)
     expect(game_board.last['A4'].contents).to eq(nil)
+
+    expect(response.body["message"]).to eq("Successfully placed ship with a size of #{payload['ship_size']}. You have 1 ship(s) to place with a size of 2.")
   end
 
   it 'should not allow players to place a ship who are not a part of this game' do

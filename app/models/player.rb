@@ -1,7 +1,7 @@
-class Player
+class Player < SimpleDelegator
   attr_reader :board, :ships
 
-  def initialize(board)
+  def initialize(board, _user)
     @board = board
     @ships = {
       destroyers: 1,
