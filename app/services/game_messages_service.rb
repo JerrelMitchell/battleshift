@@ -24,6 +24,8 @@ class GameMessagesService
   def ship_placement_feedback
     if @player.ships.values.sum > 0
       "Successfully placed ship with a size of #{placed_ship_size}. You have #{player_remaining_ships.values.sum} ship(s) to place with a size of #{remaining_ship_size(player_remaining_ships.keys.first)}."
+    elsif @player.ships.values.sum == 0
+      "Successfully placed ship with a size of #{placed_ship_size}. You have 0 ship(s) to place."
     end
   end
 end
