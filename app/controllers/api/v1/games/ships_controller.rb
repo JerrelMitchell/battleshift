@@ -1,8 +1,8 @@
-class Api::V1::Games::ShipsController < ApplicationController
+class Api::V1::Games::ShipsController < Api::V1::ApplicationController
   def create
     game    = Game.find(params[:game_id])
     player  = User.find_by(auth_token: request.headers['HTTP_X_API_KEY'])
-    payload = JSON.parse(params[:body])
+    payload = JSON.parse(request.body.string)
     ship    = Ship.new(payload['ship_size'])
     board   = UserGame.create_board(player, game)
     placer  = ShipPlacer.new(board: board,
@@ -14,6 +14,6 @@ class Api::V1::Games::ShipsController < ApplicationController
 
     game.update(player_1_board: game.player_1_board, player_2_board: game.player_2_board)
 
-    # render status: 200
+    render status: 200
   end
 end
