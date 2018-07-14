@@ -12,7 +12,7 @@ RSpec.describe 'User Ship Placement Request' do
     payload = { ship_size: 3, start_space: 'A1', end_space: 'A3' }.to_json
 
     headers = { 'X-Api-Key' => player1.auth_token, 'CONTENT_TYPE' => 'application/json' }
-    params = { body: payload }.to_json
+    params = payload
 
     post "/api/v1/games/#{Game.last.id}/ships", params: params, headers: headers
 
