@@ -37,5 +37,13 @@ game_attributes = {
 game = Game.new(game_attributes)
 game.save!
 
-User.create(name: "Bluth", email: "example@example.com", password: "123abc", status: 1, auth_token: "dEJS3d9m3RKSGKmoNYnGSPx5")
-User.create(name: "Job", email: "notanemail@example.com", password: "123abc", status: 1, auth_token: "e9TceAxUHYzny3rV7K5rfAmx")
+User.find_or_create_by!(name: 'Bluth',
+                        email: ENV['BATTLESHIFT_EMAIL'],
+                        password_digest: ENV['BATTLESHIFT_PASSWORD'],
+                        status: 1,
+                        auth_token: ENV['BATTLESHIFT_API_KEY'])
+User.find_or_create_by!(name: 'Job',
+                        email: ENV['BATTLESHIFT_OPPONENT_EMAIL'],
+                        password_digest: ENV['BATTLESHIFT_OPPONENT_PASSWORD'],
+                        status: 1,
+                        auth_token: ENV['BATTLESHIFT_OPPONENT_API_KEY'])
