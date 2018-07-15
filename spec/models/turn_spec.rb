@@ -34,4 +34,16 @@ RSpec.describe Turn do
       expect(turn.payload).to eq(payload)
     end
   end
+
+  context 'Instance Methods' do
+    describe '#current_board' do
+      it 'should return the current board object based on the current_player' do
+        expect(turn.current_board).to eq(game.player_1_board)
+
+        game.update!(current_turn: 'opponent')
+
+        expect(turn.current_board).to eq(game.player_2_board)
+      end
+    end
+  end
 end

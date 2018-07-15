@@ -11,8 +11,6 @@ class Api::V1::Games::ShipsController < Api::V1::ApplicationController
     turn = Turn.new(Game.find(params[:game_id]),
                     User.find_by(auth_token: request.headers['HTTP_X_API_KEY']),
                     JSON.parse(request.body.string))
-
-                    require 'pry';binding.pry
     # determine ship and player, create meta
     # Use game.current_ship instead
     # ship = game.new_ship(payload['ship_size'])
