@@ -14,7 +14,7 @@ describe "Api::V1::Shots" do
 
     let(:user) { game.users.create!(name: 'Archibald', email: 'skeletor@example.com', password: 'password', status: 1) }
 
-    it "updates the message and board with a hit" do
+    xit "updates the message and board with a hit" do
       allow_any_instance_of(AiSpaceSelector).to receive(:fire!).and_return("Miss")
       ShipPlacer.new(board: player_2_board,
                      ship: sm_ship,
@@ -38,7 +38,7 @@ describe "Api::V1::Shots" do
       expect(player_2_targeted_space).to eq("Hit")
     end
 
-    it "updates the message and board with a miss" do
+    xit "updates the message and board with a miss" do
       allow_any_instance_of(AiSpaceSelector).to receive(:fire!).and_return("Miss")
 
       headers = { "HTTP_X_API_KEY" => user.auth_token, "CONTENT_TYPE" => "application/json" }
