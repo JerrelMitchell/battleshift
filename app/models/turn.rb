@@ -8,9 +8,9 @@ class Turn
   end
 
   def current_board
-    if @current_game.current_turn == 'challenger'
+    if player_number == 'player_1'
       @current_game.player_1_board
-    elsif @current_game.current_turn == 'opponent'
+    elsif player_number == 'player_2'
       @current_game.player_2_board
     end
   end
@@ -19,23 +19,26 @@ class Turn
     @current_ship ||= Ship.new(@payload['ship_size'])
   end
 
+  def player_number
+    UserGame.find_by(game: @current_game, user: @current_player).player
+  end
   
   def update_board_with_ship
-    if @current_game.current_turn == 'challenger'
+    if player_number == 'player_1'
       @current_game.update!(player_1_board: current_board)
-    elsif @current_game.current_turn == 'opponent'
-      @current_game.update!(player_1_board: current_board)
+    elsif player_number == 'player_2'
+      @current_game.update!(player_2_board: current_board)
     end
   end
   
   def update_player_ship_count
-    if current_ship.type == 'destroyer' && @current_game.current_turn == 'challenger'
+    if current_ship.type == 'destroyer' && player_number == 'player_1'
       @current_game.update!(player_1_destroyer_count: @current_game.player_1_destroyer_count - 1)
-    elsif current_ship.type == 'cruiser' && @current_game.current_turn == 'challenger'
+    elsif current_ship.type == 'cruiser' && player_number == 'player_1'
       @current_game.update!(player_1_cruiser_count: @current_game.player_1_cruiser_count - 1)
-    elsif current_ship.type == 'destroyer' && @current_game.current_turn == 'opponent'
+    elsif current_ship.type == 'destroyer' && player_number == 'player_2'
       @current_game.update!(player_2_destroyer_count: @current_game.player_2_destroyer_count - 1)
-    elsif @current_ship.type == 'cruiser' && @current_game.current_turn == 'opponent'
+    elsif @current_ship.type == 'cruiser' && player_number == 'player_2'
       @current_game.update!(player_2_cruiser_count: @current_game.player_2_cruiser_count - 1)
     end
   end
