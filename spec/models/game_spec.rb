@@ -26,26 +26,4 @@ RSpec.describe Game, type: :model do
     it { should have_many(:user_games) }
     it { should have_many(:users).through(:user_games) }
   end
-
-  context 'Instance Methods' do
-    describe '#new_ship' do
-      it 'should instantiate a new ship object' do
-        # Create a destroyer
-        ship_length = 3
-        ship = game.new_ship(ship_length)
-
-        expect(ship).to be_a(Ship)
-        expect(ship.length).to eq(3)
-        expect(ship.type).to eq('destroyer')
-
-        # Create a cruiser
-        ship_length = 2
-        ship = game.new_ship(ship_length)
-
-        expect(ship).to be_a(Ship)
-        expect(ship.length).to eq(2)
-        expect(ship.type).to eq('cruiser')
-      end
-    end
-  end
 end
