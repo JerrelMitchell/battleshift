@@ -4,12 +4,14 @@ class TurnProcessor
     @target = target
     @messages = []
     @player = player
+    # @player_turns = { player_1: game.player_1_turns, player_2: game.player_2_turns }
   end
 
   def run!
     begin
       attack_opponent
       # ai_attack_back
+      update_current_turn
       game.save!
     rescue GameError => e
       @messages << e.message
@@ -20,6 +22,12 @@ class TurnProcessor
     @messages.join(" ")
   end
 
+  def is_players_turn?
+    return true if player_number == 'player_1' && game.current_turn == 'challenger'
+    return true if player_number == 'player_2' && game.current_turn == 'opponent'
+    return false
+  end
+
   private
 
   attr_reader :game, :target
@@ -27,7 +35,21 @@ class TurnProcessor
   def attack_opponent
     result = Shooter.fire!(board: opponent.board, target: target)
     @messages << "Your shot resulted in a #{result}."
-    game.player_1_turns += 1
+    add_to_player_turn
+    # game.player_1_turns += 1
+  end
+
+  def update_current_turn
+    if game.current_turn == 'challenger'
+      game.current_turn = 'opponent'
+    elsif game.current_turn == 'opponent'
+      game.current_turn = 'challenger'
+    end
+  end
+
+  def add_to_player_turn
+    game.player_1_turns += 1 if player_number == 'player_1'
+    game.player_2_turns += 1 if player_number == 'player_2'
   end
 
   # def ai_attack_back
@@ -41,7 +63,6 @@ class TurnProcessor
   end
 
   def current_player_board
-    # require 'pry';binding.pry
     if player_number == 'player_1'
       game.player_1_board
     elsif player_number == 'player_2'

@@ -46,6 +46,9 @@ class GameMessagesService
     elsif ships.values.sum == 0
       "Successfully placed ship with a size of #{placed_ship_size}. You have 0 ship(s) to place."
     end
-    # "Successfully placed ship with a size of 3. You have 1 ship(s) to place with a size of 2."
+  end
+
+  def not_your_turn
+    { message: 'Invalid move. It\'s your opponent\'s turn'}
   end
 end
