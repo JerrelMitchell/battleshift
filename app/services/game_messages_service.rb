@@ -4,13 +4,14 @@ class GameMessagesService
   #   @payload = payload
   # end
 
-  def initialize(game, ship, player_number_string)
+  def initialize(game: nil, ship: nil, player_number_string: nil)
     @game = game
     @ship = ship
     @player = player_number_string
+    # require 'pry';binding.pry
     @ships = {
-      destroyer: game["#{player_number_string}_destroyer_count"],
-      cruiser: game["#{player_number_string}_cruiser_count"]
+      destroyer: @game["#{player_number_string}_destroyer_count"],
+      cruiser: @game["#{player_number_string}_cruiser_count"]
     }
   end
 
