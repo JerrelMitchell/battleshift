@@ -25,7 +25,6 @@ class TurnProcessor
 
   def attack_opponent
     result = Shooter.fire!(board: opponent.board, target: target)
-    # require 'pry';binding.pry
     @messages << "Your shot resulted in a #{result}."
     game.player_1_turns += 1
   end

@@ -49,12 +49,10 @@ class Turn
                    ship: current_ship, 
                    start_space: @payload['start_space'], 
                    end_space: @payload['end_space']).run
+                   
     # Update state of Turn's current_game
     update_board_with_ship
     update_player_ship_count
     @current_game = Game.find(@current_game.id)
   end
-  # def current_player
-  #   @current_player ||= Player.new(@current_user, )
-  # end
 end

@@ -5,7 +5,6 @@ class Api::V1::Games::ShipsController < Api::V1::ApplicationController
                     request.body.string)
 
     turn.place_ship
-    require 'pry';binding.pry
     message_service = GameMessagesService.new(game: turn.current_game, ship: turn.current_ship)
     render json: turn.current_game, message: message_service.ship_placement_feedback
   end
