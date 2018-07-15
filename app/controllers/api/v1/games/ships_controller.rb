@@ -1,13 +1,23 @@
 class Api::V1::Games::ShipsController < Api::V1::ApplicationController
   def create
     # find game, user, and payload
-    game    = Game.find(params[:game_id])
-    user    = User.find_by(auth_token: request.headers['HTTP_X_API_KEY'])
-    payload = JSON.parse(request.body.string)
+    # game    = Game.find(params[:game_id])
+    # user    = User.find_by(auth_token: request.headers['HTTP_X_API_KEY'])
+    # payload = JSON.parse(request.body.string)
+    # Set game state with game user, and payload
+    # game = Game.find(params[:game_id])
+    # game.set_state( User.find_by(auth_token: request.headers['HTTP_X_API_KEY']),
+    #                 JSON.parse(request.body.string))
+    turn = Turn.new(Game.find(params[:game_id]),
+                    User.find_by(auth_token: request.headers['HTTP_X_API_KEY']),
+                    JSON.parse(request.body.string))
 
+                    require 'pry';binding.pry
     # determine ship and player, create meta
-    ship = Ship.new(payload['ship_size'])
-    player_number = UserGame.find_by(game: game, user: user).player 
+    # Use game.current_ship instead
+    # ship = game.new_ship(payload['ship_size'])
+
+    # player_number = UserGame.find_by(game: game, user: user).player 
     player_ship = "#{player_number}_#{ship.type}_count"
     board = game["#{player_number}_board"]
     # place ship
