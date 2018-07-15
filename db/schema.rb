@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20180715035028) do
     t.integer "current_turn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "player_1"
+    t.text "player_2"
     t.integer "player_1_destroyer_count", default: 1
     t.integer "player_1_cruiser_count", default: 1
     t.integer "player_2_destroyer_count", default: 1
