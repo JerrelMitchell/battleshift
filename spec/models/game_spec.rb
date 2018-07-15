@@ -20,6 +20,8 @@ RSpec.describe Game, type: :model do
     expect(game.player_1_turns).to eq(0)
     expect(game.player_2_turns).to eq(0)
     expect(game.current_turn).to eq(player_type)
+    expect(game.player1_destroyer_count).to eq(1)
+    expect(game.player1_cruiser_count).to eq(1)
   end
 
   describe 'Relationships' do
