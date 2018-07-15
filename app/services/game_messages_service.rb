@@ -49,6 +49,6 @@ class GameMessagesService
   end
 
   def not_your_turn
-    { message: 'Invalid move. It\'s your opponent\'s turn'}
+    'Invalid move. It\'s your opponent\'s turn'
   end
 end
