@@ -30,7 +30,7 @@ RSpec.describe GameMessagesService do
                     "end_space" => "A3"
                   }
 
-        message_service = GameMessagesService.new(player, payload: payload)
+        message_service = GameMessagesService.new()
 
         message = "Successfully placed ship with a size of 2. You have 0 ship(s) to place."
 

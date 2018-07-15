@@ -13,7 +13,7 @@ RSpec.describe 'User Ship Placement Request' do
     post "/api/v1/games/#{Game.last.id}/ships", params: payload.to_json, headers: headers
     
     game_board_rows = Game.last.player_1_board.board
-    first_row        = game_board_rows.first
+    first_row       = game_board_rows.first
 
     expect(first_row[0]['A1'].contents).to be_a(Ship)
     expect(first_row[1]['A2'].contents).to be_a(Ship)

@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 20180715035028) do
     t.integer "current_turn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "player1_destroyer_count", default: 1
-    t.integer "player1_cruiser_count", default: 1
-    t.integer "player2_destroyer_count", default: 1
-    t.integer "player2_cruiser_count", default: 1
+    t.integer "player_1_destroyer_count", default: 1
+    t.integer "player_1_cruiser_count", default: 1
+    t.integer "player_2_destroyer_count", default: 1
+    t.integer "player_2_cruiser_count", default: 1
   end
 
   create_table "user_games", force: :cascade do |t|
