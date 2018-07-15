@@ -20,6 +20,12 @@ class Ship
     @damage += 1
   end
 
+  def type
+    return 'destroyer' if @length == 3
+    return 'cruiser' if @length == 2
+    return 'unknown'
+  end
+
   def is_sunk?
     @damage == @length
   end

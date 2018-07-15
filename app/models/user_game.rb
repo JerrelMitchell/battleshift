@@ -6,7 +6,7 @@ class UserGame < ApplicationRecord
 
   enum player: ['player_1', 'player_2']
 
-  def self.create_board(user, game)
+  def self.choose_board(user, game)
     if find_by(user_id: user.id).player == 'player_1'
       board = game.player_1_board
     else

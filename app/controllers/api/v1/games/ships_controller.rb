@@ -1,17 +1,11 @@
-class Api::V1::Games::ShipsController < ApplicationController
+class Api::V1::Games::ShipsController < Api::V1::ApplicationController
   def create
-    game    = Game.find(params[:game_id])
-    player  = User.find_by(auth_token: request.headers['HTTP_X_API_KEY'])
-    payload = JSON.parse(params[:body])
-    ship    = Ship.new(payload['ship_size'])
-    board   = UserGame.create_board(player, game)
-    placer  = ShipPlacer.new(board: board,
-                             ship: ship,
-                             start_space: payload['start_space'],
-                             end_space: payload['end_space'])
+    turn = Turn.new(Game.find(params[:game_id]),
+                    User.find_by(auth_token: request.headers['HTTP_X_API_KEY']),
+                    request.body.string)
 
-    placer.run
-
-    game.update(player_1_board: game.player_1_board, player_2_board: game.player_2_board)
+    turn.place_ship
+    message_service = GameMessagesService.new(game: turn.current_game, ship: turn.current_ship)
+    render json: turn.current_game, message: message_service.ship_placement_feedback
   end
 end
