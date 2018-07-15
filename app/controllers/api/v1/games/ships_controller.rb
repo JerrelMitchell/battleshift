@@ -1,15 +1,9 @@
 class Api::V1::Games::ShipsController < Api::V1::ApplicationController
   def create
-
-    # find game
-    game = Game.find(params[:game_id])
-
-    # find user
-    user = User.find_by(auth_token: request.headers['HTTP_X_API_KEY'])
-
-    # Gather payload
-
-    payload       = JSON.parse(request.body.string)
+    # find game, user, and payload
+    game    = Game.find(params[:game_id])
+    user    = User.find_by(auth_token: request.headers['HTTP_X_API_KEY'])
+    payload = JSON.parse(request.body.string)
 
     # determine ship and player, create meta
     ship = Ship.new(payload['ship_size'])
