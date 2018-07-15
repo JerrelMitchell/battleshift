@@ -47,6 +47,6 @@ class Api::V1::Games::ShipsController < Api::V1::ApplicationController
     # updated_game = Game.find(params[:game_id])
 
     # render json for game and message
-    render json: turn.current_game, message: GameMessagesService.new(game: turn.current_game, ship: turn.current_ship, player_number_string: player_number).ship_placement_feedback
+    render json: turn.current_game, message: GameMessagesService.new(game: turn.current_game, ship: turn.current_ship).ship_placement_feedback
   end
 end
