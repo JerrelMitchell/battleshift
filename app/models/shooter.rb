@@ -17,14 +17,14 @@ class Shooter
     new(board: board, target: target).fire!
   end
 
+  def valid_shot?
+    board.space_names.include?(target)
+  end
+
   private
     attr_reader :board, :target
 
     def space
       @space ||= board.locate_space(target)
-    end
-
-    def valid_shot?
-      board.space_names.include?(target)
     end
 end

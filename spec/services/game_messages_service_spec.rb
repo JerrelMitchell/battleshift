@@ -47,5 +47,17 @@ RSpec.describe GameMessagesService do
         expect(message_service.ship_placement_feedback).to eq(message)
       end
     end
+
+    describe '#not_your_turn' do
+      it 'should return a message about it not being that players turn' do
+        expect(GameMessagesService.new.not_your_turn).to eq('Invalid move. It\'s your opponent\'s turn')
+      end
+    end
+
+    describe '#invalid_coordinates' do
+      it 'should return an invalid coordinates message' do
+        expect(GameMessagesService.new.invalid_coordinates).to eq('Invalid coordinates.')
+      end
+    end
   end
 end

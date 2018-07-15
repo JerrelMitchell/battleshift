@@ -28,6 +28,10 @@ class TurnProcessor
     return false
   end
 
+  def valid_coordinates?
+    opponent.board.space_names.include?(@target)
+  end
+
   private
 
   attr_reader :game, :target
