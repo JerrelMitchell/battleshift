@@ -8,28 +8,27 @@ class TurnProcessor
 
   def run!
     begin
-      result = attack_opponent
+      attack_opponent
+      # result = attack_opponent
       # ai_attack_back
       update_current_turn
-      if result == 'Hit'
-        ship_sunk?
-      end
-
-      # if result == 'Hit' && ship_sunk?
-      #   @messages << "Battleship sunk."
+      # if result == 'Hit'
+      #   ship_sunk?
       # end
 
-      # if opponent_game_data.player_ships == 0
-      #   # require 'pry';binding.pry
-      #   @messages << "Game over."
-      # end
+      # # if result == 'Hit' && ship_sunk?
+      # #   @messages << "Battleship sunk."
+      # # end
+
+      # # if opponent_game_data.player_ships == 0
+      # #   # require 'pry';binding.pry
+      # #   @messages << "Game over."
+      # # end
 
       game.save!
     rescue GameError => e
       @messages << e.message
     end
-
-    result
   end
 
   def message
@@ -47,7 +46,7 @@ class TurnProcessor
   end
 
   def game_over?
-    opponent_game_data.player_ships == 0
+    player_game_data.player_ships == 0 || opponent_game_data.player_ships == 0
   end
 
   private
@@ -58,13 +57,13 @@ class TurnProcessor
     result = Shooter.fire!(board: opponent.board, target: target)
     @messages << "Your shot resulted in a #{result}."
 
-    # if result == 'Hit' && ship_sunk?
-    #   @messages << "Battleship sunk."
-    # end
+    if result == 'Hit' && ship_sunk?
+      @messages << "Battleship sunk."
+    end
 
-    # if opponent_game_data.player_ships == 0
-    #   @messages << "Game over."
-    # end
+    if result == 'Hit' && opponent_game_data.player_ships == 0
+      @messages << "Game over."
+    end
 
     add_to_player_turn
     result
