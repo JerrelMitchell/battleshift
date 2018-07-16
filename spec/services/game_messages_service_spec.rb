@@ -59,5 +59,11 @@ RSpec.describe GameMessagesService do
         expect(GameMessagesService.new.invalid_coordinates).to eq('Invalid coordinates.')
       end
     end
+
+    describe '#game_over' do
+      it 'should return a game over message' do
+        expect(GameMessagesService.new.game_over).to eq('Invalid move. Game over.')
+      end
+    end
   end
 end
