@@ -25,7 +25,7 @@ RSpec.describe GameMessagesService do
 
         message_service = GameMessagesService.new(game: game, ship: ship)
 
-        message = "Successfully placed ship with a size of #{payload['ship_size']}. You have #{player.ships[:cruisers]} ship(s) to place with a size of 2."
+        message = "Successfully placed ship with a size of #{payload['ship_size']}. You have #{player.ships_to_place[:cruisers]} ship(s) to place with a size of 2."
 
         expect(message_service.ship_placement_feedback).to eq(message)
       end
@@ -40,7 +40,7 @@ RSpec.describe GameMessagesService do
 
         message_service = GameMessagesService.new(game: game, ship: ship)
 
-        message = "Successfully placed ship with a size of #{payload['ship_size']}. You have #{player.ships[:destroyers]} ship(s) to place with a size of 3."
+        message = "Successfully placed ship with a size of #{payload['ship_size']}. You have #{player.ships_to_place[:destroyers]} ship(s) to place with a size of 3."
 
         expect(message_service.ship_placement_feedback).to eq(message)
       end
@@ -90,6 +90,12 @@ RSpec.describe GameMessagesService do
     describe '#invalid_coordinates' do
       it 'should return an invalid coordinates message' do
         expect(GameMessagesService.new.invalid_coordinates).to eq('Invalid coordinates.')
+      end
+    end
+
+    describe '#game_over' do
+      it 'should return a game over message' do
+        expect(GameMessagesService.new.game_over).to eq('Invalid move. Game over.')
       end
     end
   end

@@ -50,4 +50,8 @@ class GameMessagesService
   def invalid_coordinates
     'Invalid coordinates.'
   end
+
+  def game_over
+    'Invalid move. Game over.'
+  end
 end

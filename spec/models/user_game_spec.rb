@@ -8,6 +8,6 @@ RSpec.describe UserGame do
 
   describe 'Validations' do
     it { should validate_presence_of(:player) }
-    it {}
+    it { should validate_presence_of(:player_ships) }
   end
 end

@@ -8,8 +8,8 @@ RSpec.describe Player do
     end
 
     it 'should be created with 1 destroyer and 1 cruiser' do
-      expect(player.ships[:destroyers]).to eq(1)
-      expect(player.ships[:cruisers]).to eq(1)
+      expect(player.ships_to_place[:destroyers]).to eq(1)
+      expect(player.ships_to_place[:cruisers]).to eq(1)
     end
   end
 
@@ -18,7 +18,7 @@ RSpec.describe Player do
       it 'should decrease the given ship amount by 1' do
         player.decrease_ship_count(3)
 
-        expect(player.ships[:destroyers]).to eq(0)
+        expect(player.ships_to_place[:destroyers]).to eq(0)
       end
     end
   end
