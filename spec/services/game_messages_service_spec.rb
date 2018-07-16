@@ -25,7 +25,7 @@ RSpec.describe GameMessagesService do
 
         message_service = GameMessagesService.new(game: game, ship: ship)
 
-        message = "Successfully placed ship with a size of #{payload['ship_size']}. You have #{player.ships[:cruisers]} ship(s) to place with a size of 2."
+        message = "Successfully placed ship with a size of #{payload['ship_size']}. You have #{player.ships_to_place[:cruisers]} ship(s) to place with a size of 2."
 
         expect(message_service.ship_placement_feedback).to eq(message)
       end
