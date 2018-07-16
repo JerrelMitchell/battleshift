@@ -79,8 +79,8 @@ RSpec.describe Turn do
 
     describe '#update_board_with_ship' do
       it 'should update the database record to account for the newly placed ship' do
-        turn.update_board_with_ship
-        
+        this = turn.update_board_with_ship
+
       end
     end
   end
