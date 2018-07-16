@@ -16,9 +16,21 @@ RSpec.describe Turn do
                  status: 1)
   }
 
+  let(:user2) {
+    User.create!(name: 'Calvin Test',
+                 email: 'calvin@example.com',
+                 password: 'calvinspassword',
+                 status: 1)
+  }
+
   let(:payload) {
     { ship_size: 3, start_space: 'A1', end_space: 'A3' }.to_json
   }
+
+  before :each do
+    game.user_games.create!(user_id: user.id, player: 0)
+    game.user_games.create!(user_id: user2.id, player: 1)
+  end
 
   let(:turn) { Turn.new(game, user, payload) }
   describe 'Attributes' do
@@ -40,9 +52,8 @@ RSpec.describe Turn do
       it 'should return the current board object based on the current_player' do
         expect(turn.current_board).to eq(game.player_1_board)
 
-        game.update!(current_turn: 'opponent')
-
-        expect(turn.current_board).to eq(game.player_2_board)
+        turn2 = Turn.new(game, user2, payload)
+        expect(turn2.current_board).to eq(game.player_2_board)
       end
     end
 
@@ -68,8 +79,8 @@ RSpec.describe Turn do
 
     describe '#update_board_with_ship' do
       it 'should update the database record to account for the newly placed ship' do
-        turn.update_board_with_ship
-        
+        this = turn.update_board_with_ship
+
       end
     end
   end

@@ -2,11 +2,6 @@ class GameMessagesService
   def initialize(game: nil, ship: nil)
     @game = game
     @ship = ship
-    # @player = player
-    # @ships = {
-    #   destroyer: @game["#{player_number_string}_destroyer_count"],
-    #   cruiser: @game["#{player_number_string}_cruiser_count"]
-    # }
   end
 
   def ships
@@ -46,6 +41,13 @@ class GameMessagesService
     elsif ships.values.sum == 0
       "Successfully placed ship with a size of #{placed_ship_size}. You have 0 ship(s) to place."
     end
-    # "Successfully placed ship with a size of 3. You have 1 ship(s) to place with a size of 2."
+  end
+
+  def not_your_turn
+    'Invalid move. It\'s your opponent\'s turn'
+  end
+
+  def invalid_coordinates
+    'Invalid coordinates.'
   end
 end
