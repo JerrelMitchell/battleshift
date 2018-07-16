@@ -9,22 +9,7 @@ class TurnProcessor
   def run!
     begin
       attack_opponent
-      # result = attack_opponent
-      # ai_attack_back
       update_current_turn
-      # if result == 'Hit'
-      #   ship_sunk?
-      # end
-
-      # # if result == 'Hit' && ship_sunk?
-      # #   @messages << "Battleship sunk."
-      # # end
-
-      # # if opponent_game_data.player_ships == 0
-      # #   # require 'pry';binding.pry
-      # #   @messages << "Game over."
-      # # end
-
       game.save!
     rescue GameError => e
       @messages << e.message
@@ -45,10 +30,6 @@ class TurnProcessor
     opponent.board.space_names.include?(@target)
   end
 
-  def game_over?
-    player_game_data.player_ships == 0 || opponent_game_data.player_ships == 0
-  end
-
   private
 
   attr_reader :game, :target
@@ -62,28 +43,28 @@ class TurnProcessor
     end
 
     if result == 'Hit' && opponent_game_data.player_ships == 0
+      game.update!(winner: @player.email)
+      @messages << "Game over."
+    end
+
+    if game.winner
       @messages << "Game over."
     end
 
     add_to_player_turn
-    result
   end
 
   def ship_sunk?
     ship = opponent.board.locate_space(target).contents
     if ship.is_sunk?
-      sink_ship
+      decrease_player_ship_count
     end
   end
 
-  def sink_ship
+  def decrease_player_ship_count
     new_ship_count = opponent_game_data.player_ships -= 1
     opponent_game_data.update!(player_ships: new_ship_count)
   end
-
-  # def game_over?
-  #   player_game_data.player_ships == 0 || opponent_game_data.player_ships == 0
-  # end
 
   def update_current_turn
     if game.current_turn == 'challenger'
@@ -97,12 +78,6 @@ class TurnProcessor
     game.player_1_turns += 1 if player_number == 'player_1'
     game.player_2_turns += 1 if player_number == 'player_2'
   end
-
-  # def ai_attack_back
-  #   result = AiSpaceSelector.new(player.board).fire!
-  #   @messages << "The computer's shot resulted in a #{result}."
-  #   game.player_2_turns += 1
-  # end
 
   def player_game_data
     UserGame.find_by(game: game, user: @player)
