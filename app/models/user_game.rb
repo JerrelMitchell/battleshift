@@ -1,5 +1,5 @@
 class UserGame < ApplicationRecord
-  validates_presence_of :player
+  validates_presence_of :player, :player_ships
 
   belongs_to :user
   belongs_to :game

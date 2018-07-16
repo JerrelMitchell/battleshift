@@ -1,4 +1,4 @@
-class Player < SimpleDelegator
+class Player
   attr_reader :board, :ships_to_place
 
   def initialize(board, user = nil)

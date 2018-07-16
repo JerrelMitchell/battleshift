@@ -8,8 +8,14 @@ class Api::V1::Games::ShotsController < Api::V1::ApplicationController
     elsif !turn_processor.valid_coordinates?
       render json: game, status: 400, message: GameMessagesService.new.invalid_coordinates
     else
-      turn_processor.run!
-      render json: game, message: turn_processor.message
+      result = turn_processor.run!
+      if turn_processor.game_over?
+        render json: game, message: "Your shot resulted in a Hit. Battleship sunk. Game over."
+      elsif result == 'Hit'
+        render json: game, message: "Your shot resulted in a Hit. Battleship sunk."
+      elsif result == 'Miss'
+        render json: game, message: "Your shot resulted in a Miss."
+      end
     end
   end
 end
