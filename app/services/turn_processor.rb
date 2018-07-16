@@ -39,8 +39,23 @@ class TurnProcessor
   def attack_opponent
     result = Shooter.fire!(board: opponent.board, target: target)
     @messages << "Your shot resulted in a #{result}."
+
+    if result == 'Hit' && ship_sunk?
+      @messages << "Battleship sunk."
+    end
+
+    if game_over?
+      @messages << "Game over."
+    end
+
     add_to_player_turn
-    # game.player_1_turns += 1
+  end
+
+  def ship_sunk?
+    opponent.board.locate_space(target).contents.is_sunk?
+  end
+
+  def game_over?
   end
 
   def update_current_turn
